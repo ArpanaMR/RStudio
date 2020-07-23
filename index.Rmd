@@ -1,0 +1,25 @@
+---
+title: "DataProducts1"
+author: "Arpana M Ramaswamy"
+date: "23/07/2020"
+output: html_document
+---
+
+
+
+```{r, echo=TRUE, results=FALSE}
+data <- "http://samplecsvs.s3.amazonaws.com/SacramentocrimeJanuary2006.csv"
+df <- read.csv(url(data))
+df <- df[sample(nrow(df), 800), c(8,9)]
+```
+
+
+
+```{r Leaflet, echo=TRUE}
+library(leaflet)
+df %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions())
+```
+
